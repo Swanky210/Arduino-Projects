@@ -1,0 +1,31 @@
+int WET =3;
+int dry=2;
+int sensor=0;
+int value=0;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(WET,OUTPUT);
+  pinMode(dry,OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
+  delay(2000);
+
+}
+void loop(){
+  Serial.print("Moisture Level");
+  value=analogRead(sensor);
+  value=value/10;
+  Serial.println(value);
+  if(value<50){
+    digitalWrite(WET,HIGH);
+    digitalWrite(LED_BUILTIN, HIGH);      
+  }
+  else{
+    digitalWrite(dry,HIGH);
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+  delay(1000);
+  digitalWrite(WET,LOW);
+  digitalWrite(dry,LOW);
+
+}
